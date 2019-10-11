@@ -3,17 +3,26 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "node-sass": "^4.12.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.2.1",
+    "@storybook/addon-docs": "^5.2.3",
+    "@storybook/addon-knobs": "^5.2.3",
     "@storybook/addon-links": "^5.2.1",
+    "@storybook/addon-storysource": "^5.2.3",
     "@storybook/addons": "^5.2.1",
     "@storybook/react": "^5.2.1",
     "@testing-library/dom": "^6.4.1",
     "@testing-library/jest-dom": "^4.1.0",
     "@testing-library/react": "^9.2.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react-hooks": "^2.1.2",
+    "husky": "^3.0.8",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.1",
     "react-scripts": "3.2.0"
   },
   "scripts": {
@@ -26,6 +35,11 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
   "browserslist": {
     "production": [

@@ -1,0 +1,31 @@
+.MonthNavigation {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  width: 90%;
+  justify-self: center;
+  grid-template-columns: 15% 70% 15%;
+
+  div {
+    align-self: center;
+    justify-self: center;
+    font-size: 18px;
+
+    i {
+      border: solid rgb(22, 17, 111);
+      border-width: 0 4px 4px 0;
+      display: inline-block;
+      padding: 4px;
+    }
+
+    .arrowLeft {
+      transform: rotate(135deg);
+      -webkit-transform: rotate(135deg);
+    }
+
+    .arrowRight {
+      transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
+    }
+  }
+}
