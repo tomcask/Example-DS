@@ -1,7 +1,7 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, text } from "@storybook/addon-knobs";
-import { MonthNavigation } from "./MonthNavigation";
+import { MonthNavigation } from "./index";
 
 export default {
   title: "Molecules|Month Navigation",

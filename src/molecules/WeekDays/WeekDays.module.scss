@@ -1,0 +1,22 @@
+.WeekDays {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 90%;
+  font-size: 12px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-self: center;
+
+  .DayOfTheWeek {
+    justify-self: center;
+
+    &:first-child {
+      font-weight: bold;
+    }
+
+    &:last-child {
+      font-weight: bold;
+    }
+  }
+}
