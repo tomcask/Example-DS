@@ -9,66 +9,110 @@ export const DAYS_OF_THE_WEEK = [
   "Sat"
 ];
 
-function getNextMonthDay(today) {
-  let month = today.getMonth() + 2;
-  let year = today.getFullYear();
+export const NAMES_OF_THE_MONTH = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
+
+function getTotalDaysCurrentMonth(selectedDate) {
+  const dayOfCurrentMonth = selectedDate.getDate();
+  const nextMonthDay = getNextMonthDay(selectedDate);
+  const firstDayNextMonth = new Date(nextMonthDay);
+  const daysUntilNextMonth = (firstDayNextMonth - selectedDate) / MS_DAY - 1;
+
+  return Math.round(dayOfCurrentMonth + daysUntilNextMonth);
+}
+
+export function getNextMonthDay(selectedDate) {
+  let month = selectedDate.getMonth() + 2;
+  let year = selectedDate.getFullYear();
   let nextMonthDayString = "";
 
-  if (month == 13) {
-    nextMonthDayString = `${year + 1}/01/01`;
+  if (month === 13) {
+    nextMonthDayString = `${year + 1}/01/01 00:00:00`;
   } else {
-    month = new String(month);
+    month = "" + month;
     if (month.length < 2) {
       month = "0" + month;
     }
-    nextMonthDayString = `${year}/${month}/01`;
+    nextMonthDayString = `${year}/${month}/01 00:00:00`;
   }
   return new Date(nextMonthDayString);
 }
 
-function getTotalDaysCurrentMonth(today) {
-  const dayOfCurrentMonth = today.getDate();
-  const nextMonthDay = getNextMonthDay(today);
-  const firstDayNextMonth = new Date(nextMonthDay);
-  const daysUntilNextMonth =
-    Math.round((firstDayNextMonth - today) / MS_DAY) - 1;
-  return dayOfCurrentMonth + daysUntilNextMonth;
+export function getPreviousMonthDay(selectedDate) {
+  let month = selectedDate.getMonth();
+  let year = selectedDate.getFullYear();
+
+  let previousMonthDayString = "";
+
+  if (month === 0) {
+    previousMonthDayString = `${year - 1}/12/01 00:00:00`;
+  } else {
+    month = "" + month;
+    if (month.length < 2) {
+      month = "0" + month;
+    }
+    previousMonthDayString = `${year}/${month}/01 00:00:00`;
+  }
+  return new Date(previousMonthDayString);
 }
 
-export function getDaysCurrentMonth(today) {
-  const totalDaysCurrentMonth = getTotalDaysCurrentMonth(today);
+export function getMonthName(selectedDate) {
+  return NAMES_OF_THE_MONTH[selectedDate.getMonth()];
+}
+
+export function getDaysCurrentMonth(selectedDate) {
+  const totalDaysCurrentMonth = getTotalDaysCurrentMonth(selectedDate);
   let currentDays = [];
 
   for (let i = 0; i < totalDaysCurrentMonth; i++) {
     currentDays.push(i + 1);
   }
-
   return currentDays;
 }
-
-export function getDaysPreviousMonth(today) {
-  const day = today.getDate();
-  const msUntilPreviousMonth = today - day * MS_DAY;
-  const lastDayPreviousMonth = new Date(msUntilPreviousMonth);
-  const weekDayPreviousMonth = lastDayPreviousMonth.getDay();
-  const firstDay = new Date(
-    msUntilPreviousMonth - MS_DAY * weekDayPreviousMonth
-  );
-
+export function getDaysPreviousMonth(selectedDate) {
   let previousDays = [];
-  for (let i = 0; i <= weekDayPreviousMonth; i++) {
-    previousDays.push(firstDay.getDate() + i);
-  }
+  if (selectedDate.getDay() !== 0) {
+    const lastDayPreviousMonth = new Date(
+      selectedDate.getFullYear(),
+      selectedDate.getMonth(),
+      0
+    );
+    const weekDayPreviousMonth = lastDayPreviousMonth.getDay();
+    if (weekDayPreviousMonth < 6) {
+      const firstDay = new Date(
+        lastDayPreviousMonth - MS_DAY * weekDayPreviousMonth
+      ).getDate();
 
+      for (let i = 0; i <= weekDayPreviousMonth; i++) {
+        previousDays.push(firstDay + i);
+      }
+    } else {
+      previousDays.push(lastDayPreviousMonth.getDate());
+    }
+  }
   return previousDays;
 }
 
-export function getDaysFollowingMonth(today) {
+export function getDaysFollowingMonth(selectedDate) {
+  const nextMonthDay = getNextMonthDay(selectedDate).getDay();
   let nextDays = [];
-  const nextMonthDay = getNextMonthDay(today).getDay();
 
-  for (let i = nextMonthDay; i <= 6; i++) {
-    nextDays.push(i - nextMonthDay + 1);
+  if (nextMonthDay !== 0) {
+    for (let i = nextMonthDay; i <= 6; i++) {
+      nextDays.push(i - nextMonthDay + 1);
+    }
   }
 
   return nextDays;

@@ -36,7 +36,3 @@ export const Multiple = () => (
     onNext={action("onNext")}
   />
 );
-
-Multiple.story = {
-  parameters: { docs: { storyDescription: "4 sizes dsdssdare supported." } }
-};

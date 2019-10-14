@@ -9,7 +9,7 @@ let nextMonthHandlerMocked = jest.fn();
 beforeEach(() => {
   wrapper = render(
     <MonthNavigation
-      month={"January 2019"}
+      day={new Date("2019/10/12")}
       onPrevious={previousMonthHandlerMocked}
       onNext={nextMonthHandlerMocked}
     />
@@ -19,7 +19,7 @@ beforeEach(() => {
 describe("MonthNavigation Component allow that", () => {
   it("user can see the name of the month and year ", () => {
     const { getByText } = wrapper;
-    expect(getByText("January 2019")).toBeInstanceOf(HTMLElement);
+    expect(getByText("October 2019")).toBeInstanceOf(HTMLElement);
   });
 
   it("user can navigate the previous month ", () => {
