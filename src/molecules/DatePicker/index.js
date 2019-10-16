@@ -65,6 +65,7 @@ const DatePickerComponent = () => {
         visible={visible}
         selected={selected}
         setSelectedDay={setSelectedDay}
+        fontSize={"large"}
       />
     </div>
   );

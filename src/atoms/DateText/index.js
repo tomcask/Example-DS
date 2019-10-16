@@ -10,11 +10,12 @@ import builderCSSClass from "classnames";
 const DateTextComponent = ({
   element,
   onClickHandler,
-  formatDate = "defaut",
-  border = "none",
+  //style props
   background,
+  border = "none",
   fontSize = "large",
-  fontColor
+  fontColor,
+  formatDate = "defaut"
 }) => {
   const createStyle = (fontColor, background) => {
     let style = {};

@@ -2,21 +2,21 @@
   height: 336px;
   margin-top: 16px;
   border-radius: 8px;
-  box-shadow: 0px 0px 16px 4px rgba(0,0,0,0.5);
   grid-gap: 0px;
   grid-template-rows: 21% 7% 78%;
   font-family: 'Montserrat', sans-serif;
-}
 
+  &.border_solid {
+    border: solid 1px grey;
+  }
+}
 
 .visible {
-  display:grid;
+  display: grid;
 }
+
 .hidden {
-  display:grid;
+  display: grid;
   opacity: 0;
   transition: opacity 0.5s ease-in 0s;
 }
-
-
-

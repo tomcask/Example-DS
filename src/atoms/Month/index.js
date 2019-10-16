@@ -5,6 +5,8 @@ import {
   getDaysFollowingMonth,
   getDaysPreviousMonth
 } from "../../services/dates";
+import builderCSSClass from "classnames";
+
 import styles from "./Month.module.scss";
 
 let applySelected;
@@ -12,18 +14,19 @@ let applySelected;
  The naming of this component is based on the semantics and ease of understanding of the code,
  trying to address the reuse depends a lot on the philosophy of the team and company.
  */
-const MonthComponent = ({ day, selected, setSelectedDay }) => {
+const MonthComponent = ({ day, selected, setSelectedDay, fontSize, shape }) => {
   const setSelectedDayHandled = (day, val) => {
     applySelected = val;
     setSelectedDay(day, val);
   };
-
+  const otherClassNames = builderCSSClass(
+    styles.Day,
+    styles.otherMonth,
+    styles[`font_${fontSize}`]
+  );
   const data = getDaysPreviousMonth(day);
   const previous = data.map((val, i) => (
-    <div
-      key={`previous_${i}_${val}`}
-      className={`${styles.Day} ${styles.otherMonth}`}
-    >
+    <div key={`previous_${i}_${val}`} className={otherClassNames}>
       {val}
     </div>
   ));
@@ -33,10 +36,13 @@ const MonthComponent = ({ day, selected, setSelectedDay }) => {
   }
 
   const current = getDaysCurrentMonth(day).map((val, i) => {
-    const decorate =
-      selected === 1 && val === applySelected
-        ? `${styles.Day} ${styles.selected}`
-        : styles.Day;
+    const isSelected = selected === 1 && val === applySelected;
+    const decorate = builderCSSClass({
+      [styles.Day]: true,
+      [styles.selected]: isSelected,
+      [styles[`font_${fontSize}`]]: true,
+      [styles[shape]]: isSelected
+    });
     return (
       <div
         key={`current_${i}_${val}`}
@@ -49,10 +55,7 @@ const MonthComponent = ({ day, selected, setSelectedDay }) => {
   });
 
   const following = getDaysFollowingMonth(day).map((val, i) => (
-    <div
-      key={`next_${i}_${val}`}
-      className={`${styles.Day} ${styles.otherMonth}`}
-    >
+    <div key={`next_${i}_${val}`} className={otherClassNames}>
       {val}
     </div>
   ));
