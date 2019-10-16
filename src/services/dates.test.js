@@ -7,6 +7,7 @@ import {
 } from "./dates";
 
 describe("navigate between months", function() {
+  
   it("in a previous month like a some Date in October", function() {
     const today = new Date("2019/10/12 00:00:00");
     const expectedDate = new Date("2019/09/01 00:00:00");
@@ -42,7 +43,7 @@ describe("get the days of the last week of the previous month", function() {
   it("in October", function() {
     const expectedDays = [29, 30];
 
-    const today = new Date("2019/10/12");
+    const today = new Date("2019/10/13 00:00:00");
 
     const days = getDaysPreviousMonth(today);
 
@@ -64,6 +65,7 @@ describe("get the days of the last week of the previous month", function() {
 
     const today = new Date("2019/01/12");
 
+    
     const days = getDaysPreviousMonth(today);
 
     expect(days).toEqual(expectedDays);
@@ -110,6 +112,48 @@ describe("get the days of the current month", function() {
 
     const days = getDaysCurrentMonth(today);
 
+    expect(days).toEqual(expectedDays);
+  });
+  
+  it("in October", function() {
+    const expectedDays = [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ];
+    
+    const today = new Date("2019/10/14");
+    
+    const days = getDaysCurrentMonth(today);
+    
     expect(days).toEqual(expectedDays);
   });
 
@@ -344,7 +388,7 @@ describe("get the five or six weeks of  given day", function() {
       2
     ];
 
-    const today = new Date("2019/10/12");
+    const today = new Date("2019/10/14");
 
     const days = [
       ...getDaysPreviousMonth(today),

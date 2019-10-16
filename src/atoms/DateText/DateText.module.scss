@@ -1,0 +1,17 @@
+.DateText {
+  &.border_solid {
+    border: solid 1px grey;
+  }
+
+  &.font_small {
+    font-size: 12px;
+  }
+
+  &.font_medium {
+    font-size: 14px;
+  }
+
+  &.font_large {
+    font-size: 16px;
+  }
+}

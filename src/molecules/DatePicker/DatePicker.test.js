@@ -1,5 +1,6 @@
 import React from "react";
-import DatePicker from "./DatePicker";
+import {NAMES_OF_THE_MONTH} from '../../services/dates'
+import {DatePicker} from "./index";
 import { render } from "@testing-library/react";
 
 let wrapper;
@@ -7,7 +8,10 @@ let wrapper;
 beforeEach(() => {
   wrapper = render(<DatePicker />);
 });
-xit("renders without crashing", () => {
+
+it("Find the mont and year", () => {
+  const today = new Date()
+  const monthAndYearTitle = `${NAMES_OF_THE_MONTH[today.getMonth()]} ${today.getFullYear()}`
   const { getByText } = wrapper;
-  expect(getByText("January")).toBeInstanceOf(HTMLElement);
+  expect(getByText(monthAndYearTitle)).toBeInstanceOf(HTMLElement);
 });

@@ -1,9 +1,10 @@
 import React from "react";
 import { render } from "@testing-library/react";
+import {DAYS_OF_THE_WEEK} from '../../services/dates'
 import { WeekDays } from "./index";
 
 let wrapper;
-let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+let days = DAYS_OF_THE_WEEK;
 
 beforeEach(() => {
   wrapper = render(<WeekDays days={days} />);

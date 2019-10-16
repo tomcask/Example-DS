@@ -1,9 +1,10 @@
 import React from "react";
 import { withKnobs, array } from "@storybook/addon-knobs";
+import {DAYS_OF_THE_WEEK} from '../../services/dates'
 import { WeekDays } from "./index";
 
 export default {
-  title: "Molecules|Week Days",
+  title: "Atoms|Week Days",
 
   parameters: {
     component: WeekDays,
@@ -13,7 +14,7 @@ export default {
 
 export const Basic = () => (
   <WeekDays
-    days={array("Days", ["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"])}
+    days={array("Days", DAYS_OF_THE_WEEK)}
   />
 );
 

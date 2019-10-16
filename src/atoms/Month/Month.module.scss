@@ -1,0 +1,30 @@
+.Month {
+  display: grid;
+  height: 90%;
+  text-align: center;
+  justify-content: center;
+  grid-template-rows: auto;
+  grid-template-columns: 40px 40px 40px 40px 40px 40px 40px;
+  grid-column-gap: 8px;
+
+  .Day {
+    text-align: center;
+    align-self: center;
+    font-size: 12px;
+    padding: 12px;
+    font-weight: 500;
+  }
+  .Day + .selected {
+    background-color: rgb(22, 17, 111);
+    border-radius: 50%;
+    font-weight: 700;
+    color: white;
+  }
+
+  .otherMonth {
+    color: rgb(162, 162, 162);
+  }
+
+}
+
+
