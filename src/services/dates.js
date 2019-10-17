@@ -24,6 +24,22 @@ export const NAMES_OF_THE_MONTH = [
   "December"
 ];
 
+export const FORMATS = {
+  en: "en-En",
+  es: "es-ES"
+};
+
+export function obtainDatefromString(value, format) {
+  let date;
+  const dateArray = value.split("/");
+  if (format === FORMATS.en) {
+    date = new Date(dateArray[2], dateArray[0] - 1, dateArray[1], 0, 0, 0, 0);
+  } else {
+    date = new Date(dateArray[2], dateArray[1] - 1, dateArray[0], 0, 0, 0, 0);
+  }
+  return date;
+}
+
 function getTotalDaysCurrentMonth(selectedDate) {
   const dayOfCurrentMonth = selectedDate.getDate();
   const nextMonthDay = getNextMonthDay(selectedDate);
@@ -33,8 +49,8 @@ function getTotalDaysCurrentMonth(selectedDate) {
   return Math.round(dayOfCurrentMonth + daysUntilNextMonth);
 }
 
-export function getInitialDate(value = new Date()){
-  return new Date(value.setHours(0, 0, 0, 0))
+export function getInitialDate(value = new Date()) {
+  return new Date(value.setHours(0, 0, 0, 0));
 }
 
 export function getNextMonthDay(selectedDate) {
@@ -87,27 +103,27 @@ export function getDaysCurrentMonth(selectedDate) {
 }
 export function getDaysPreviousMonth(selectedDate) {
   let previousDays = [];
-  let day = selectedDate.getDate()-1
-  let isDiferentThatZero = new Date(selectedDate - day  * MS_DAY).getDay()!== 0
-  
-  if (isDiferentThatZero) {
-  const lastDayPreviousMonth = new Date(
-    selectedDate.getFullYear(),
-    selectedDate.getMonth(),
-    0
-  );
-  const weekDayPreviousMonth = lastDayPreviousMonth.getDay();
-  if (weekDayPreviousMonth < 6) {
-    const firstDay = new Date(
-      lastDayPreviousMonth - MS_DAY * weekDayPreviousMonth
-    ).getDate();
+  let day = selectedDate.getDate() - 1;
+  let isDiferentThatZero = new Date(selectedDate - day * MS_DAY).getDay() !== 0;
 
-    for (let i = 0; i <= weekDayPreviousMonth; i++) {
-      previousDays.push(firstDay + i);
+  if (isDiferentThatZero) {
+    const lastDayPreviousMonth = new Date(
+      selectedDate.getFullYear(),
+      selectedDate.getMonth(),
+      0
+    );
+    const weekDayPreviousMonth = lastDayPreviousMonth.getDay();
+    if (weekDayPreviousMonth < 6) {
+      const firstDay = new Date(
+        lastDayPreviousMonth - MS_DAY * weekDayPreviousMonth
+      ).getDate();
+
+      for (let i = 0; i <= weekDayPreviousMonth; i++) {
+        previousDays.push(firstDay + i);
+      }
+    } else {
+      previousDays.push(lastDayPreviousMonth.getDate());
     }
-  } else {
-    previousDays.push(lastDayPreviousMonth.getDate());
-  }
   }
   return previousDays;
 }

@@ -69,7 +69,11 @@ MonthComponent.displayName = "Month";
 MonthComponent.propTypes = {
   /**
 	 Sets the property of the list of day name */
-  day: PropTypes.object
+  day: PropTypes.object,
+  selected: PropTypes.number,
+  setSelectedDay: PropTypes.func,
+  fontSize: PropTypes.string,
+  shape: PropTypes.string
 };
 
 export const Month = MonthComponent;

@@ -14,8 +14,7 @@ const DateTextComponent = ({
   background,
   border = "none",
   fontSize = "large",
-  fontColor,
-  formatDate = "defaut"
+  fontColor
 }) => {
   const createStyle = (fontColor, background) => {
     let style = {};
@@ -53,7 +52,15 @@ DateTextComponent.displayName = "DateText";
 DateTextComponent.propTypes = {
   /**
 	 Sets the property of the list of day name */
-  days: PropTypes.arrayOf(PropTypes.string)
+  days: PropTypes.arrayOf(PropTypes.string),
+  element: PropTypes.object,
+  onClickHandler: PropTypes.func,
+  //style props
+  background: PropTypes.string,
+  border: PropTypes.string,
+  fontSize: PropTypes.string,
+  fontColor: PropTypes.string,
+  formatDate: PropTypes.string
 };
 
 export const DateText = DateTextComponent;
