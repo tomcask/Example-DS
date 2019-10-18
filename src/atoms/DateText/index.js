@@ -51,17 +51,17 @@ const DateTextComponent = ({
 DateTextComponent.displayName = "DateText";
 
 DateTextComponent.propTypes = {
-  /**  react ref to access DOM node */
+  /*  react ref to access DOM node */
   element: PropTypes.object,
-  /**  onClick callback */
+  /*  onClick callback */
   onClickHandler: PropTypes.func,
-  /**  custom style  to background */
+  /*  custom style  to background */
   background: PropTypes.string,
-  /**  "solid", "none"default none */
+  /*  "solid", "none"default none */
   border: PropTypes.oneOf(["solid", "none"]),
   /* 'small',  'medium', "large" default: 'large' */
   fontSize: PropTypes.oneOf(["small", "medium", "large"]),
-  /**  custom style  to color */
+  /*  custom style  to color */
   fontColor: PropTypes.string
 };
 

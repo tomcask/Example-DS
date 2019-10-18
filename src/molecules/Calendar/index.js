@@ -71,10 +71,15 @@ CalendarComponent.propTypes = {
   /**
 	 Sets the property of the list of day name */
   day: PropTypes.instanceOf(Date),
+  /* previousMonth callback */
   onPrevious: PropTypes.func,
+  /* previousMonth callback */
   onNext: PropTypes.func,
+  /* make the visible component */
   visible: PropTypes.bool,
+  /* control the month selected */
   selected: PropTypes.number,
+  /* callback */
   setSelectedDay: PropTypes.func,
   //style props
   border: PropTypes.string,
