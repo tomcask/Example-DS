@@ -1,6 +1,6 @@
 import React from "react";
 import { withKnobs, array } from "@storybook/addon-knobs";
-import {DAYS_OF_THE_WEEK} from '../../services/dates'
+import { DAYS_OF_THE_WEEK } from "../../services/dates";
 import { WeekDays } from "./index";
 
 export default {
@@ -12,13 +12,10 @@ export default {
   }
 };
 
-export const Basic = () => (
-  <WeekDays
-    days={array("Days", DAYS_OF_THE_WEEK)}
-  />
+export const Default = () => (
+  <WeekDays days={array("Days", DAYS_OF_THE_WEEK)} />
 );
 
-Basic.story = {
-  parameters: { docs: { storyDescription: "4 sizes are supported." } },
+Default.story = {
   decorators: [withKnobs]
 };

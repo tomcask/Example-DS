@@ -1,6 +1,6 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, text } from "@storybook/addon-knobs";
+import { withKnobs } from "@storybook/addon-knobs";
 import { MonthNavigation } from "./index";
 
 export default {
@@ -13,26 +13,17 @@ export default {
   }
 };
 
-export const Basic = () => (
-  <MonthNavigation
-    month={text("Month", "January 2019")}
-    onPrevious={action("onPrevious")}
-    onNext={action("onNext")}
-  />
-);
-
-Basic.story = {
-  parameters: { docs: { storyDescription: "4 sizes are supported." } }
+export const Default = () => {
+  const today = new Date();
+  return (
+    <MonthNavigation
+      day={today}
+      onPrevious={action("onPrevious")}
+      onNext={action("onNext")}
+    />
+  );
 };
 
-Basic.story = {
+Default.story = {
   decorators: [withKnobs]
 };
-
-export const Multiple = () => (
-  <MonthNavigation
-    month={"January 2019"}
-    onPrevious={action("onPrevious")}
-    onNext={action("onNext")}
-  />
-);

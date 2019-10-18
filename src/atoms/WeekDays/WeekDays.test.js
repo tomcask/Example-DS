@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import {DAYS_OF_THE_WEEK} from '../../services/dates'
+import { DAYS_OF_THE_WEEK } from "../../services/dates";
 import { WeekDays } from "./index";
 
 let wrapper;

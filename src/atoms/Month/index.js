@@ -11,8 +11,9 @@ import styles from "./Month.module.scss";
 
 let applySelected;
 /**
- The naming of this component is based on the semantics and ease of understanding of the code,
- trying to address the reuse depends a lot on the philosophy of the team and company.
+ *
+ * The naming of this component is based on the semantics and ease of understanding of the code,
+ * trying to address the reuse depends a lot on the philosophy of the team and company.
  */
 const MonthComponent = ({ day, selected, setSelectedDay, fontSize, shape }) => {
   const setSelectedDayHandled = (day, val) => {
@@ -46,6 +47,7 @@ const MonthComponent = ({ day, selected, setSelectedDay, fontSize, shape }) => {
     return (
       <div
         key={`current_${i}_${val}`}
+        data-testid="day-current-month"
         className={decorate}
         onClick={() => setSelectedDayHandled(day, val)}
       >
@@ -70,10 +72,20 @@ MonthComponent.propTypes = {
   /**
 	 Sets the property of the list of day name */
   day: PropTypes.object,
+  /**
+	 Ref to the month within the selected day */
   selected: PropTypes.number,
+  /** callback to click on a valid day */
   setSelectedDay: PropTypes.func,
-  fontSize: PropTypes.string,
-  shape: PropTypes.string
+  /* 'small',  'medium', "large" default: 'large' */
+  fontSize: PropTypes.oneOf(["small", "medium", "large"]),
+  /* 'small',  'medium', "large" default: 'circle' */
+  shape: PropTypes.oneOf(["circle", "square"])
+};
+
+MonthComponent.defaultProps = {
+  selected: 1,
+  shape: "circle"
 };
 
 export const Month = MonthComponent;

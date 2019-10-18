@@ -12,8 +12,8 @@ const DateTextComponent = ({
   onClickHandler,
   //style props
   background,
-  border = "none",
-  fontSize = "large",
+  border,
+  fontSize,
   fontColor
 }) => {
   const createStyle = (fontColor, background) => {
@@ -43,6 +43,7 @@ const DateTextComponent = ({
       readOnly={true}
       style={style}
       className={classNames}
+      data-testid="text-input-date"
     />
   );
 };
@@ -50,17 +51,25 @@ const DateTextComponent = ({
 DateTextComponent.displayName = "DateText";
 
 DateTextComponent.propTypes = {
-  /**
-	 Sets the property of the list of day name */
-  days: PropTypes.arrayOf(PropTypes.string),
+  /**  react ref to access DOM node */
   element: PropTypes.object,
+  /**  onClick callback */
   onClickHandler: PropTypes.func,
-  //style props
+  /**  custom style  to background */
   background: PropTypes.string,
-  border: PropTypes.string,
-  fontSize: PropTypes.string,
-  fontColor: PropTypes.string,
-  formatDate: PropTypes.string
+  /**  "solid", "none"default none */
+  border: PropTypes.oneOf(["solid", "none"]),
+  /* 'small',  'medium', "large" default: 'large' */
+  fontSize: PropTypes.oneOf(["small", "medium", "large"]),
+  /**  custom style  to color */
+  fontColor: PropTypes.string
+};
+
+DateTextComponent.defaultProps = {
+  background: "white",
+  fontSize: "large",
+  border: "none",
+  fontColor: "black"
 };
 
 export const DateText = DateTextComponent;

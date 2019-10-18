@@ -27,10 +27,11 @@
     }
   }
 
-  .Day+.selected {
+  .Day + .selected {
     background-color: rgb(22, 17, 111);
     font-weight: 700;
     color: white;
+    border-radius: 50%;
 
     &.square {
       border-radius: 15%;
@@ -44,5 +45,4 @@
   .otherMonth {
     color: rgb(162, 162, 162);
   }
-
 }

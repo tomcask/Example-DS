@@ -11,9 +11,6 @@ import styles from "./Calendar.module.scss";
  The naming of this component is based on the semantics and ease of understanding of the code,
  trying to address the reuse depends a lot on the philosophy of the team and company.
  */
-/* Shadow: any valid CSS value is allowed
-Background color: any colour is valid
-Border: Only 2 options: none or solid 1px grey */
 const CalendarComponent = ({
   day,
   onPrevious,
@@ -32,8 +29,9 @@ const CalendarComponent = ({
   const display = visible ? styles.visible : styles.hidden;
 
   const createStyle = (shadow, background, fontColor) => {
-    let style = {};
-    style.boxShadow = shadow ? shadow : "0px 0px 16px 4px rgba(0,0,0,0.5)";
+    let style = {
+      boxShadow: shadow
+    };
 
     if (background) {
       style.backgroundColor = background;
@@ -74,7 +72,25 @@ CalendarComponent.propTypes = {
 	 Sets the property of the list of day name */
   day: PropTypes.instanceOf(Date),
   onPrevious: PropTypes.func,
-  onNext: PropTypes.func
+  onNext: PropTypes.func,
+  visible: PropTypes.bool,
+  selected: PropTypes.number,
+  setSelectedDay: PropTypes.func,
+  //style props
+  border: PropTypes.string,
+  background: PropTypes.string,
+  fontSize: PropTypes.string,
+  fontColor: PropTypes.string,
+  shadow: PropTypes.string,
+  shape: PropTypes.string
+};
+
+CalendarComponent.defaultProps = {
+  visible: false,
+  border: "none",
+  fontSize: "medium",
+  shadow: "0px 0px 16px 4px rgba(0,0,0,0.5)",
+  shape: "circle"
 };
 
 export const Calendar = CalendarComponent;

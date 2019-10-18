@@ -19,11 +19,13 @@
     }
 
     .arrowLeft {
+      cursor: pointer;
       transform: rotate(135deg);
       -webkit-transform: rotate(135deg);
     }
 
     .arrowRight {
+      cursor: pointer;
       transform: rotate(-45deg);
       -webkit-transform: rotate(-45deg);
     }

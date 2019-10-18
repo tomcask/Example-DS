@@ -7,7 +7,7 @@ import styles from "./MonthNavigation.module.scss";
   The naming of this component is based on the semantics and ease of understanding of the code,
   trying to address the reuse depends a lot on the philosophy of the team and company.
  */
-const monthNavigationComponent = ({ day = new Date(), onPrevious, onNext }) => {
+const MonthNavigationComponent = ({ day, onPrevious, onNext }) => {
   const title = `${getMonthName(day)} ${day.getFullYear()}`;
   const onPreviousHandler = onPrevious
     ? () => onPrevious(day)
@@ -33,12 +33,12 @@ const monthNavigationComponent = ({ day = new Date(), onPrevious, onNext }) => {
     </div>
   );
 };
-monthNavigationComponent.displayName = "MonthNavigation";
+MonthNavigationComponent.displayName = "MonthNavigation";
 
-monthNavigationComponent.propTypes = {
+MonthNavigationComponent.propTypes = {
   /**
     Sets the property of the month lavel */
-  month: PropTypes.string,
+  day: PropTypes.object,
   /**
     Callback that provides browsing to the previous month */
   onPrevious: PropTypes.func,
@@ -47,4 +47,8 @@ monthNavigationComponent.propTypes = {
   onNext: PropTypes.func
 };
 
-export const MonthNavigation = monthNavigationComponent;
+MonthNavigationComponent.defaultProps = {
+  day: new Date()
+};
+
+export const MonthNavigation = MonthNavigationComponent;

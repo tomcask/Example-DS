@@ -1,25 +1,27 @@
 import React from "react";
-import { withKnobs, date } from "@storybook/addon-knobs";
+import { withKnobs, select } from "@storybook/addon-knobs";
+import { action } from "@storybook/addon-actions";
 import { Month } from "./index";
 
 export default {
-	title: "Atoms|Month",
-	
-	parameters: {
-		component: Month,
-		componentSubtitle: "Displays a component with the days of the month showing then last week of the previous month and the first week of the following month"
-	}
+  title: "Atoms|Month",
+
+  parameters: {
+    component: Month,
+    componentSubtitle:
+      "Component that shows all the days of the selected month, and remaining days until completing the week of the previous and subsequent month."
+  }
 };
 
-export const Basic = () => (
-	<Month day={myDateKnob('2019/01/01')}/>
+export const Default = () => (
+  <Month
+    day={new Date(2019, 0, 12, 0, 0, 0, 0)}
+    setSelectedDay={action("select a day")}
+    fontSize={select("fontSize", ["small", "medium", "large"], "medium")}
+    shape={select("Shape", ["circle", "square"], "medium")}
+  />
 );
 
-Basic.story = {
-		decorators: [withKnobs]
+Default.story = {
+  decorators: [withKnobs]
 };
-
-function myDateKnob(name, defaultValue) {
-	const stringTimestamp = date(name, defaultValue)
-	return new Date(stringTimestamp)
-}

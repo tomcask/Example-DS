@@ -16,8 +16,10 @@ import { DateText } from "../../atoms/DateText";
  The naming of this component is based on the semantics and ease of understanding of the code,
  trying to address the reuse depends a lot on the philosophy of the team and company.
  */
-const DatePickerComponent = formatOf => {
-  const format = FORMATS[formatOf] || FORMATS.es;
+const DatePickerComponent = ({ options }) => {
+  const format =
+    (options.input && FORMATS[options.input.formatOf]) || FORMATS.es;
+
   const inputEl = useRef(null);
   const initialDate = getInitialDate();
   const [day, setDay] = useState(initialDate);
@@ -59,7 +61,11 @@ const DatePickerComponent = formatOf => {
 
   return (
     <div className={styles.DatePicker}>
-      <DateText element={inputEl} onClickHandler={toggleCalendar} />
+      <DateText
+        element={inputEl}
+        onClickHandler={toggleCalendar}
+        {...options.input}
+      />
       <Calendar
         day={day}
         onPrevious={onPrevious}
@@ -68,17 +74,23 @@ const DatePickerComponent = formatOf => {
         selected={selected}
         setSelectedDay={setSelectedDay}
         fontSize={"large"}
+        {...options.calendar}
       />
     </div>
   );
 };
 
-DatePickerComponent.displayName = "Index";
+DatePickerComponent.displayName = "DataPicker";
 
 DatePickerComponent.propTypes = {
   /**
 	Sets the property of the list of day name */
-  formatOf: PropTypes.string
+  options: PropTypes.object
+};
+
+DatePickerComponent.defaultProps = {
+  input: {},
+  calendar: {}
 };
 
 export const DatePicker = DatePickerComponent;
